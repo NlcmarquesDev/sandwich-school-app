@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /broodjes_app/public/
+
+  # Redirecionar diretamente para index.php quando o diretório raiz for acessado
+  RewriteRule ^$ index.php [L]
+
+  # Não redirecionar se a solicitação já for para index.php
+  RewriteRule ^index\.php$ - [L]
+
+  # Não redirecionar se o arquivo ou diretório solicitado existir
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Redirecionar todas as outras solicitações para index.php
+  RewriteRule . index.php [L]
+</IfModule>
