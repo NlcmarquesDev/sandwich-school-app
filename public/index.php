@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use App\Core\Router;
 
@@ -19,8 +20,15 @@ $uri = $_SERVER['REQUEST_URI'];
 $router = new Router();
 
 $router->get('/', '/index');
-$router->get('/login', '/login');
-$router->get('/register', '/register');
+
+$router->get('/login', '/login/show');
+$router->post('/login', '/login/checkLogin');
+
+$router->get('/register', '/registration/show');
+$router->post('/register', '/registration/create');
+
+
+$router->get('/success', '/success');
 
 
 $router->router($uri, $method);

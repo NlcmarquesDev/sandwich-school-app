@@ -29,4 +29,15 @@ class Router
 
         return $this;
     }
+    public function post($uri, $controller)
+    {
+        $this->routes[] = [
+            'uri' => '/broodjes_app' . $uri,
+            'controller' => $controller,
+            'method' => 'POST',
+        ];
+
+
+        return $this;
+    }
 }
