@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     try {
         $mail->buildEmail('noreply@gmail.com', $_POST['email']);
-        $mail->forValidateRegistration(['token' => $activationToken]);
+        $mail->forValidateRegistration(['password' => $newPass, 'token' => $activationToken]);
         $mail->send();
     } catch (Exception $e) {
         echo 'Message could not be sent . Mailer Error : ' . $mail->errors();

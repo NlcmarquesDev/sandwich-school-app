@@ -54,6 +54,8 @@ class Mailer
         $this->phpmailer->Body    = '
         Hallo,
         <br/><br/><br/>
+        Your password is <b>' . $params['password'] . '</b>
+        <br/><br/><br/>
          Click <a href="http://localhost:8888/broodjes_app/validate-email?token=' . $params['token'] . '">here</a> to confirm your email address
         ';
     }
