@@ -6,8 +6,14 @@
             </a>
         </div>
         <div class="col-md-3 text-end">
-            <a href="/broodjes_app/login" type="button" class="btn btn-outline-primary me-2">Login</a>
-            <a href="/broodjes_app/register" type="button" class="btn btn-primary">Sign-up</a>
+            <?php if (isset($_SESSION['user'])) : ?>
+                <a href="/broodjes_app/logout" type="button" class="btn btn-primary">logout</a>
+            <?php else : ?>
+                <a href="/broodjes_app/login" type="button" class="btn btn-outline-primary me-2">Login</a>
+                <a href="/broodjes_app/register" type="button" class="btn btn-primary">Sign-up</a>
+
+
+            <?php endif ?>
         </div>
     </header>
 </div>

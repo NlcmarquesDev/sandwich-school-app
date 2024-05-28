@@ -22,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ])->find())) {
             $errors['email'] = 'This email already exists.';
         };
+    } else {
+        $errors['email'] = 'Please insert all the fields';
     }
 
 

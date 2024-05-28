@@ -28,3 +28,9 @@ function generatePassword($lenghtPassword = 4)
     }
     return $pass;
 }
+
+function redirect($path)
+{
+    header('location: ' . $path);
+    exit();
+}

@@ -20,7 +20,7 @@ include(BASE_PATH . 'app/Views/partials/navbar.php');
                         <h1 class="h3 mb-3 fw-normal">Please Log in</h1>
                         <div class="form-floating">
                             <input type="email" name="email" class="form-control mb-3" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput"><?= isset($_SESSION['oldValue']) ? $_SESSION['oldValue'] : "Email address" ?> </label>
+                            <label for="floatingInput"><?= isset($_SESSION['oldEmail']) ? $_SESSION['oldEmail'] : "Email address" ?> </label>
                         </div>
 
                         <div class="form-floating">
@@ -47,5 +47,7 @@ include(BASE_PATH . 'app/Views/partials/navbar.php');
     </div>
 </div>
 <?php
+unset($_SESSION['errors']);
+unset($_SESSION['oldEmail']);
 include(BASE_PATH . 'app/Views/partials/footer.php');
 ?>

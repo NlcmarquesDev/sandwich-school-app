@@ -24,6 +24,8 @@ $router->get('/', '/index');
 $router->get('/login', '/login/show');
 $router->post('/login', '/login/checkLogin');
 
+$router->get('/logout', '/logout');
+
 $router->get('/register', '/registration/show');
 $router->post('/register', '/registration/create');
 
