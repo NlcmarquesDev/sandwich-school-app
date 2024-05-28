@@ -44,7 +44,7 @@ class Mailer
         <br/><br/><br/>
         Your new password is <b>' . $params['newPass'] . '</b>
         <br/><br/><br/>
-         Click <a href="http://localhost:8888/broodjes_app/confirm?token=' . $params['resetToken'] . '">here</a> to confirm your new password
+         Click <a href="http://localhost:8888/broodjes_app/reset-password?token=' . $params['resetToken'] . '">here</a> to confirm your new password
         ';
     }
 
@@ -54,7 +54,7 @@ class Mailer
         $this->phpmailer->Body    = '
         Hallo,
         <br/><br/><br/>
-         Click <a href="http://localhost:8888/broodjes_app/confirm?token=' . $params['token'] . '">here</a> to confirm your email address
+         Click <a href="http://localhost:8888/broodjes_app/validate-email?token=' . $params['token'] . '">here</a> to confirm your email address
         ';
     }
     public function send()

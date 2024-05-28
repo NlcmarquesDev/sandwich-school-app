@@ -1,5 +1,6 @@
 <?php
 
+use App\Core\Mailer;
 use App\Core\Database;
 use App\Core\ValidateForm;
 
@@ -49,15 +50,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ]);
 
 
+    $mail = new Mailer();
+
+    try {
+        $mail->buildEmail('noreply@gmail.com', $_POST['email']);
+        $mail->forValidateRegistration(['token' => $activationToken]);
+        $mail->send();
+    } catch (Exception $e) {
+        echo 'Message could not be sent . Mailer Error : ' . $mail->errors();
+    }
+
+
     view('/success', [
-        'msg' => 'Signup successful',
-        'msgBtn' => 'Login'
+        'msg' => 'Signup successful, Please verify your email address',
+        'msgBtn' => 'Login',
+        'color' => 'success',
     ]);
-
-    //Gerar a validacao por email
-
-
-
-
-
 }

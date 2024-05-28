@@ -14,9 +14,13 @@ class Authentication
             'email' => $email,
         ])->find();
 
+        return $this->validateCredentials($user, $password);
+    }
 
+    public function validateCredentials($user, $password)
+    {
         if ($user) {
-            if (password_verify($password, $user['password'])) {
+            if (password_verify($password, $user['password']) && $user['account_activation_hash'] == null) {
                 $_SESSION['user'] = ["id" => $user['id'], 'name' => $user['name']];
                 session_regenerate_id(true);
 

@@ -26,12 +26,13 @@ $router->post('/login', '/login/checkLogin');
 
 $router->get('/forgotpassword', '/forgotpassword/show');
 $router->post('/forgotpassword', '/forgotpassword/create');
-$router->get('/confirm', '/forgotpassword/confirm');
+$router->get('/reset-password', '/forgotpassword/confirm');
 
 $router->get('/logout', '/logout');
 
 $router->get('/register', '/registration/show');
 $router->post('/register', '/registration/create');
+$router->get('/validate-email', '/registration/confirm');
 
 
 $router->get('/success', '/success');
