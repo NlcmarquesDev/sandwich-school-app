@@ -30,9 +30,12 @@ $router->get('/reset-password', '/forgotpassword/confirm');
 
 $router->get('/logout', '/logout');
 
-$router->get('/register', '/registration/show');
+$router->get('/register', '/registration/show')->only('guest');
 $router->post('/register', '/registration/create');
 $router->get('/validate-email', '/registration/confirm');
+
+
+$router->get('/dashboard', '/dashboard/show')->only('auth');
 
 
 $router->get('/success', '/success');

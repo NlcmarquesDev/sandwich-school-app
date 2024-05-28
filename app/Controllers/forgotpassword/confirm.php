@@ -26,4 +26,3 @@ view('/success', [
     'msgBtn' => 'Login',
     'color' => 'success'
 ]);
-// 1716892750

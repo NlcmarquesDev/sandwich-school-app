@@ -23,9 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $auth = new Authentication();
         $login = $auth->attempt($_POST['email'], $_POST['password']);
         if ($login) {
-
-
-            view('/brood');
+            redirect('/broodjes_app/dashboard');
         } else {
             $_SESSION['errors'] = 'Invalid login';
             $_SESSION['oldEmail'] = $_POST['email'];
