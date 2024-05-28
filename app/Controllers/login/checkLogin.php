@@ -6,6 +6,13 @@ use App\Core\Authentication;
 // $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    //Reset the password
+    if (isset($_POST['forgot']) && (int) $_POST['forgot'] === 1) {
+        redirect('/broodjes_app/forgotpassword');
+    }
+
+
     if (isset($_POST['email']) && isset($_POST['password'])) {
         //tratar da validacao
 

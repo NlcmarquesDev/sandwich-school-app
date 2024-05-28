@@ -34,3 +34,10 @@ function redirect($path)
     header('location: ' . $path);
     exit();
 }
+
+function generateToken()
+{
+    $token = bin2hex(random_bytes(16));
+
+    return hash('sha256', $token);
+}

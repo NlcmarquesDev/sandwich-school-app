@@ -11,8 +11,8 @@ require_once BASE_PATH . 'app/Core/functions.php';
 
 
 
-$method = $_SERVER['REQUEST_METHOD'];
-$uri = $_SERVER['REQUEST_URI'];
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 
 // dd($uri);
@@ -23,6 +23,10 @@ $router->get('/', '/index');
 
 $router->get('/login', '/login/show');
 $router->post('/login', '/login/checkLogin');
+
+$router->get('/forgotpassword', '/forgotpassword/show');
+$router->post('/forgotpassword', '/forgotpassword/create');
+$router->get('/confirm', '/forgotpassword/confirm');
 
 $router->get('/logout', '/logout');
 

@@ -1,4 +1,2 @@
 <?php
-view('/index', [
-    'title' => 'Pedro'
-]);
+view('/index');

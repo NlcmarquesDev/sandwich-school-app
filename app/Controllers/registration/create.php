@@ -4,7 +4,7 @@ use App\Core\Database;
 use App\Core\ValidateForm;
 
 $db = new Database();
-// dd($_POST);
+
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['email']) && isset($_POST['name'])) {
@@ -36,40 +36,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $newPass = generatePassword();
     $pass = password_hash($newPass, PASSWORD_DEFAULT);
+    $activationToken = generateToken();
 
 
     // chamar a base de dados
-    $db->query('INSERT INTO users (name,email, password, temp_pass) VALUES(:name, :email, :password, :temp_pass)', [
-        'name' => $_POST['name'],
-        'email' => $_POST['email'],
+    $db->query('INSERT INTO users (name,email, password, temp_pass, account_activation_hash) VALUES(:name, :email, :password, :temp_pass,:account_activation_hash)', [
+        'name' => htmlspecialchars($_POST['name']),
+        'email' => htmlspecialchars($_POST['email']),
         'password' => $pass,
-        'temp_pass' => $newPass
+        'temp_pass' => $newPass,
+        'account_activation_hash' => $activationToken
     ]);
 
 
     view('/success', [
-        'msg' => 'Login made with success',
+        'msg' => 'Signup successful',
         'msgBtn' => 'Login'
     ]);
 
-    // Enviar e-mail com a senha gerada
-    // $emailSent = sendEmail(
-    //     $_POST['email'],
-    //     'Sua nova conta foi criada',
-    //     "Olá " . $_POST['name'] . ",\n\nSua conta foi criada com sucesso. Aqui estão suas credenciais:\n\nEmail: " . $_POST['email'] . "\nSenha: " . $newPass . "\n\nPor favor, altere sua senha após o primeiro login.\n\nAtenciosamente,\nEquipe"
-    // );
-
-    // if ($emailSent) {
-    //     echo "Registro concluído com sucesso! Verifique seu e-mail para a senha.";
-    // } else {
-    //     echo "Registro concluído, mas ocorreu um erro ao enviar o e-mail.";
-    // }
+    //Gerar a validacao por email
 
 
-
-    //fazer a verificacao por email
-
-    // so depois do email verificado ai sim pode ir para a zona dos alunos
 
 
 
