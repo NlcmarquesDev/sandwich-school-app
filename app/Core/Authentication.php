@@ -22,6 +22,7 @@ class Authentication
         if ($user) {
             if (password_verify($password, $user['password']) && $user['account_activation_hash'] == null) {
                 $_SESSION['user'] = ["id" => $user['id'], 'name' => $user['name']];
+                $_SESSION['breadcrumbs'] = [];
                 session_regenerate_id(true);
 
                 return true;

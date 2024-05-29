@@ -3,7 +3,6 @@
 use App\Core\ValidateForm;
 use App\Core\Authentication;
 
-// $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -11,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['forgot']) && (int) $_POST['forgot'] === 1) {
         redirect('/broodjes_app/forgotpassword');
     }
-
 
     if (isset($_POST['email']) && isset($_POST['password'])) {
         //tratar da validacao
@@ -23,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $auth = new Authentication();
         $login = $auth->attempt($_POST['email'], $_POST['password']);
         if ($login) {
-            redirect('/broodjes_app/dashboard');
+            redirect('/broodjes_app/brood');
         } else {
             $_SESSION['errors'] = 'Invalid login';
             $_SESSION['oldEmail'] = $_POST['email'];

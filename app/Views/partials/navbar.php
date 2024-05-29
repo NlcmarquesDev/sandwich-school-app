@@ -20,4 +20,11 @@
             <?php endif ?>
         </div>
     </header>
+
+    <?php
+
+    if (isset($_SESSION['user'])) {
+        include(BASE_PATH . 'app/Views/partials/breadcrumbs.php');
+    }
+    ?>
 </div>

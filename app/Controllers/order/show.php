@@ -1,0 +1,6 @@
+<?php
+
+
+
+
+view('/checkout/checkout');

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Core\Middleware\Auth;
+use App\Core\Middleware\Guest;
+
 class Router
 {
 
@@ -17,15 +20,13 @@ class Router
                 // apply the middleware
 
                 if ($route['middleware'] === 'guest') {
-                    if ($_SESSION['user'] ?? false) {
-
-                        redirect('/broodjes_app/');
-                    }
+                    (new Guest)->handle();
                 }
                 if ($route['middleware'] === 'auth') {
-                    if (!$_SESSION['user'] ?? false) {
-                        redirect('/broodjes_app/');
-                    }
+                    // if (!$_SESSION['user'] ?? false) {
+                    //     redirect('/broodjes_app/');
+                    // }
+                    (new Auth)->handle();
                 }
                 include(BASE_PATH . 'app/Controllers' . $route['controller'] . '.php');
             }
