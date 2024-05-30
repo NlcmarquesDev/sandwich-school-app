@@ -64,13 +64,13 @@ Registration
 
 ## Technologies Used
 
-**PHP:** Backend logic and server-side processing.
-**MySQL:** Database management system for storing user and order data.
-**HTML/CSS: Frontend layout and styling.
-**JavaScript:** Frontend interactivity and validation.
-**Model-View-Controller (MVC):** Architecture for organizing codebase efficiently.
-**Routing:** Custom route creation for seamless navigation within the platform.
-**Email Integration:** Sending confirmation emails for registration and password reset.
+ - **PHP:** Backend logic and server-side processing.
+ - **MySQL:** Database management system for storing user and order data.
+ - **HTML/CSS:** Frontend layout and styling.
+ - **JavaScript:** Frontend interactivity and validation.
+ - **Model-View-Controller (MVC):** Architecture for organizing codebase efficiently.
+ - **Routing:** Custom route creation for seamless navigation within the platform.
+ - **Email Integration:** Sending confirmation emails for registration and password reset.
 
 
 ## Autores
