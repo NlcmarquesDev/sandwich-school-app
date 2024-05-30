@@ -39,21 +39,31 @@ class Orders
         dd($lastId);
     }
 
+    public function getPriceBreadPerSandwish($sandwish)
+    {
+        return $sandwish['brood']['price'];
+    }
+
     public function totalPriceIngredientsPerSandwish($order)
     {
+
         $totalPriceIgredientPerSandwish = 0;
-        for ($i = 0; $i < count($order); $i++) {
-            $ingredients = $order[$i]['ingredients'];
-            for ($j = 0; $j < count($ingredients); $j++) {
-                $totalPriceIgredientPerSandwish += $ingredients[$j]['price'];
-            }
+
+        $ingredients = $order['ingredients'];
+        for ($j = 0; $j < count($ingredients); $j++) {
+            $totalPriceIgredientPerSandwish += $ingredients[$j]['price'];
         }
+
         return  $totalPriceIgredientPerSandwish;
     }
 
-    public function totalPricePerSandwish()
+
+    public function totalPricePerSandwish($sandwish)
     {
-        $totalPricePerSandwish = 10;
+        $getPriceBread = $this->getPriceBreadPerSandwish($sandwish);
+        $totalPriceIgredientPerSandwish = $this->totalPriceIngredientsPerSandwish($sandwish);
+        $totalPricePerSandwish = $getPriceBread + $totalPriceIgredientPerSandwish;
+
 
         return $totalPricePerSandwish;
     }

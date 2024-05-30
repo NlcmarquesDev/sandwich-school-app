@@ -26,7 +26,7 @@ $orders = $_SESSION['order'];
                                 <small class="text-body-secondary"> <?= $order['brood']['type'] ?></small>
                                 <br />
 
-                                <span class="text-body-secondary fs-7"> 1 X &euro;<?= $order['brood']['price'] ?> </span>
+                                <span class="text-body-secondary fs-7"> 1 X &euro;<?= $pricebread[$key] ?> </span>
 
                                 <br />
                                 <span class="text-body-secondary ">Ingredients -</span>
@@ -34,15 +34,15 @@ $orders = $_SESSION['order'];
                                     <small class="text-body-secondary"> <?= $ingredient['name'] ?>,</small>
                                 <?php endforeach ?>
                                 <br />
-                                <span class="text-body-secondary fs-7"> <?= count($order['ingredients']) . ' X &euro;' . $order['ingredients']['price'] ?> </span>
+                                <span class="text-body-secondary fs-7"> <?= count($order['ingredients']) . ' X &euro;  = &euro;' . $totalPriceIngredients[$key]  ?> </span>
                             </div>
-                            <span class="text-body-secondary">&euro;12</span>
+                            <span class="text-body-secondary">&euro;<?= $totalPriceSandwish[$key] ?></span>
                         </li>
-                    <?php endforeach ?>
 
+                    <?php endforeach ?>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (&euro;)</span>
-                        <strong>&euro;20</strong>
+                        <strong>&euro;<?= $total ?></strong>
                     </li>
                 </ul>
 
