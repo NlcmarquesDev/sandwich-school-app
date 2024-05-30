@@ -48,9 +48,10 @@ cd sandwich-platform
 composer install
 ```
 
-Set Up the Database
+##### Set Up the Database
+The database file is on the project repository
 
-Configure the Application
+##### Configure the Application
 
 Update the database configuration in your PHP files to connect to your MySQL database.
 
@@ -61,11 +62,16 @@ Start your web server and navigate to the application URL.
 Usage
 Registration
 
-## Stack utilizada
+## Technologies Used
 
-**Front-end:** Javascript, HTML, CSS
+**PHP:** Backend logic and server-side processing.
+**MySQL:** Database management system for storing user and order data.
+**HTML/CSS: Frontend layout and styling.
+**JavaScript:** Frontend interactivity and validation.
+**Model-View-Controller (MVC):** Architecture for organizing codebase efficiently.
+**Routing:** Custom route creation for seamless navigation within the platform.
+**Email Integration:** Sending confirmation emails for registration and password reset.
 
-**Back-end:** PHP, MySQL
 
 ## Autores
 
