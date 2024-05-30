@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\Database;
+use App\Models\Orders;
 
 $db = new Database();
 
@@ -9,14 +10,23 @@ $emailUser = $db->query('SELECT email FROM users WHERE id=:id', [
 ])->find();
 
 
+//criar o total valor dos ingredientes
 
-$breadPrice = [];
-for ($i = 0; $i < count($_SESSION['order']); $i++) {
-    $breadPriceUnit = $db->query('SELECT price FROM bread_types WHERE type=:type', [
-        ':type' => $_SESSION['order'][$i]['brood'],
-    ])->find();
-    array_push($breadPrice, $breadPriceUnit);
-}
+// $totalIngredientesPorSand=[
+//     '0'=>[$valor Total de ingredientes],
+//     '1'=>[$valor Total de ingredientes],
+
+// ]
+$totalPriceIgredientPerSandwish = (new Orders())->totalPriceIngredientsPerSandwish($_SESSION['order']);
+dd($totalPriceIgredientPerSandwish);
+//Cria o total por cada sandwish
+// pegar no valor da sande e somar por cada index respectivo de cada totalIngredientes
 
 
-view('/checkout/checkout', ['emailUser' => $emailUser, 'breadPrice' => $breadPrice]);
+//criar o valor total da ordem
+//pegar to total de cada sandwish e somar todos os index.
+
+
+
+
+view('/checkout/checkout', ['emailUser' => $emailUser]);

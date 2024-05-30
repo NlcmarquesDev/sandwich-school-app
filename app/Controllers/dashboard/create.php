@@ -19,9 +19,9 @@ $_SESSION['breadcrumbs'] = [
 $_SESSION['orderNumber'] = $_SESSION['orderNumber'] ? $_SESSION['orderNumber'] : 0;
 
 if (isset($_POST['brood']) && $_POST['brood']) {
-
+    $bread = (new Database)->query('SELECT * FROM bread_types WHERE id=:id', [':id' => $_POST['brood']])->find();
     $_SESSION['order'][$_SESSION['orderNumber']] = [
-        'brood' => $_POST['brood'],
+        'brood' => $bread,
     ];
 }
 

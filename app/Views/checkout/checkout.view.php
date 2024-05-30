@@ -2,6 +2,7 @@
 include(BASE_PATH . 'app/Views/partials/header.php');
 include(BASE_PATH . 'app/Views/partials/navbar.php');
 $orders = $_SESSION['order'];
+// dd($orders);
 ?>
 
 <div class="container">
@@ -20,20 +21,20 @@ $orders = $_SESSION['order'];
                     <?php foreach ($orders as $key => $order) : ?>
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
-                                <h6 class="my-0">Product name</h6>
+                                <h6 class="my-0 mb-1">Product name</h6>
                                 <span class="text-body-secondary">Bread - </span>
-                                <small class="text-body-secondary"> <?= $order['brood'] ?></small>
+                                <small class="text-body-secondary"> <?= $order['brood']['type'] ?></small>
                                 <br />
 
-                                <span class="text-body-secondary fs-7"> 1 X &euro;<?= $breadPrice[$key]['price'] ?> </span>
+                                <span class="text-body-secondary fs-7"> 1 X &euro;<?= $order['brood']['price'] ?> </span>
 
                                 <br />
                                 <span class="text-body-secondary ">Ingredients -</span>
                                 <?php foreach ($order['ingredients'] as $ingredient) : ?>
-                                    <small class="text-body-secondary"> <?= $ingredient ?>,</small>
+                                    <small class="text-body-secondary"> <?= $ingredient['name'] ?>,</small>
                                 <?php endforeach ?>
                                 <br />
-                                <span class="text-body-secondary fs-7"> <?= count($order['ingredients']) . ' X &euro;0,50 '   ?> </span>
+                                <span class="text-body-secondary fs-7"> <?= count($order['ingredients']) . ' X &euro;' . $order['ingredients']['price'] ?> </span>
                             </div>
                             <span class="text-body-secondary">&euro;12</span>
                         </li>

@@ -39,6 +39,25 @@ class Orders
         dd($lastId);
     }
 
+    public function totalPriceIngredientsPerSandwish($order)
+    {
+        $totalPriceIgredientPerSandwish = 0;
+        for ($i = 0; $i < count($order); $i++) {
+            $ingredients = $order[$i]['ingredients'];
+            for ($j = 0; $j < count($ingredients); $j++) {
+                $totalPriceIgredientPerSandwish += $ingredients[$j]['price'];
+            }
+        }
+        return  $totalPriceIgredientPerSandwish;
+    }
+
+    public function totalPricePerSandwish()
+    {
+        $totalPricePerSandwish = 10;
+
+        return $totalPricePerSandwish;
+    }
+
     public function totalPriceOrder()
     {
         $totalPrice = 10;
