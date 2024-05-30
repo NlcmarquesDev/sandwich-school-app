@@ -48,21 +48,12 @@ cd sandwich-platform
 composer install
 ```
 
-Copy code
-Set Up the Database`
-
-## Variáveis de Ambiente
-
-Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
-
-`API_KEY`
-
-`ANOTHER_API_KEY`
+Set Up the Database
 
 Configure the Application
 
 Update the database configuration in your PHP files to connect to your MySQL database.
-Set Up Email Service
+
 
 Start the Web Server
 
