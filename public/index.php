@@ -44,6 +44,8 @@ $router->get('/order', '/order/show')->only('auth');
 $router->post('/order', '/order/create')->only('auth');
 //checkout
 $router->get('/checkout', '/dashboard/checkout')->only('auth');
+//validation-order
+$router->post('/validation-order', '/order/validation-order')->only('auth');
 
 //messages - need to change to message =>alerts
 $router->get('/success', '/success');

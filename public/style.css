@@ -3,3 +3,7 @@ body {
   display: grid;
   place-items: center;
 }
+
+.fs-7 {
+  font-size: 12px;
+}

@@ -16,7 +16,7 @@ $_SESSION['breadcrumbs'] = [
         'class' => false
     ],
 ];
-$_SESSION['orderNumber'] = $_SESSION['orderNumber'] ? $_SESSION['orderNumber'] : 1;
+$_SESSION['orderNumber'] = $_SESSION['orderNumber'] ? $_SESSION['orderNumber'] : 0;
 
 if (isset($_POST['brood']) && $_POST['brood']) {
 

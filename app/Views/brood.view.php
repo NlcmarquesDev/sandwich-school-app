@@ -13,7 +13,7 @@ include(BASE_PATH . 'app/Views/partials/navbar.php');
 
                     <h4 class="fw-normal my-2"><?= $bread['type'] ?></h4>
                     <form action="/broodjes_app/beleg" method="POST">
-                        <input type="hidden" name="brood" value="<?= $bread['id'] ?>">
+                        <input type="hidden" name="brood" value="<?= $bread['type'] ?>">
                         <button type="submit" class="btn btn-secondary btn-sm" href="#">Choose</button>
                     </form>
                 </div>

@@ -6,6 +6,7 @@ namespace App\Core;
 
 use PDO;
 use DBconfig;
+use PDOStatement;
 
 require_once BASE_PATH . "DBconfig.php";
 
@@ -37,5 +38,12 @@ class Database
     public function find()
     {
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function lastInsertId($table)
+    {
+        $lastId = $this->query('SELECT MAX(id) AS last_id FROM ' . $table)->find();
+        ['last_id' => $last_Id] = $lastId;
+        return $last_Id;
     }
 }

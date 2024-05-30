@@ -1,5 +1,6 @@
 <?php
 
+
 $_SESSION['breadcrumbs'] = [
     'brood' => [
         'page' => true,
@@ -14,11 +15,6 @@ $_SESSION['breadcrumbs'] = [
         'class' => true
     ],
 ];
-
-
-
-
-
 
 
 

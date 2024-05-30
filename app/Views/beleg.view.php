@@ -18,7 +18,7 @@ var_dump($_SESSION['order']);
 
                         <h4 class="fw-normal my-2"><?= $ingredient['name'] ?></h4>
                         <p><?= $ingredient['price'] ?>&euro; </p>
-                        <input type="checkbox" name="ingredients[]" value="<?= $ingredient['id'] ?>">
+                        <input type="checkbox" name="ingredients[]" value="<?= $ingredient['name'] ?>">
                     </div>
 
                 <?php endforeach ?>
