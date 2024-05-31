@@ -24,7 +24,9 @@ $emailUser = $db->query('SELECT email FROM users WHERE id=:id', [
 $totalPriceIgredientPerSandwishArray = [];
 $getPriceBreadArray = [];
 $totalPriceSandwiahArray = [];
+
 for ($i = 0; $i < count($_SESSION['order']); $i++) {
+    // dd($_SESSION['order'])[$i];
     $totalPriceSandwish = $order->totalPricePerSandwish($_SESSION['order'][$i]);
     $getPriceBread = $order->getPriceBreadPerSandwish($_SESSION['order'][$i]);
     $totalPriceIgredientPerSandwish = $order->totalPriceIngredientsPerSandwish($_SESSION['order'][$i]);

@@ -2,7 +2,6 @@
 include(BASE_PATH . 'app/Views/partials/header.php');
 include(BASE_PATH . 'app/Views/partials/navbar.php');
 
-var_dump($_SESSION['order']);
 ?>
 
 <h1>Orders</h1>

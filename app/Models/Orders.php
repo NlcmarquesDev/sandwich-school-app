@@ -49,6 +49,7 @@ class Orders
             }
         };
         unset($_SESSION['order']);
+        unset($_SESSION['orderNumber']);
     }
 
     public function getPriceBreadPerSandwish($sandwish)

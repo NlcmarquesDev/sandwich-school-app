@@ -5,12 +5,11 @@
                 <img src="./public/images/vdab-logo.png" alt="" width="75" height="50">
             </a>
         </div>
-        <div class="col-md-3 text-end">
+        <div class="col-md-6 text-end ms-auto">
             <?php if (isset($_SESSION['user'])) : ?>
-                <div class="d-flex justify-content-center align-items-center gap-4 ">
-
+                <div class="d-flex justify-content-end align-items-center gap-4 ">
                     <p class="my-auto">Welcome, <span class="fw-bolder text-uppercase"><?= $_SESSION['user']['name'] ?></span></p>
-                    <a href="/broodjes_app/orders" type="button" class="btn btn-primary">Your orders</a>
+                    <a href="/broodjes_app/orders" class=" orders">Orders</a>
                     <a href="/broodjes_app/logout" type="button" class="btn btn-primary">logout</a>
                 </div>
             <?php else : ?>

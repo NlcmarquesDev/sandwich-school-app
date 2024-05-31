@@ -16,7 +16,13 @@ $_SESSION['breadcrumbs'] = [
         'class' => false
     ],
 ];
-$_SESSION['orderNumber'] = $_SESSION['orderNumber'] ? $_SESSION['orderNumber'] : 0;
+if (empty($_SESSION['orderNumber'])) {
+    $_SESSION['orderNumber'] = 0;
+} else {
+    $_SESSION['orderNumber'] = $_SESSION['orderNumber'];
+}
+// $_SESSION['orderNumber'] = $_SESSION['orderNumber'] ? $_SESSION['orderNumber'] : 0;
+
 
 if (isset($_POST['brood']) && $_POST['brood']) {
     $bread = (new Database)->query('SELECT * FROM bread_types WHERE id=:id', [':id' => $_POST['brood']])->find();
