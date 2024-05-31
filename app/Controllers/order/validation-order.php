@@ -5,14 +5,14 @@ use App\Models\Orders;
 $order = new Orders();
 
 
-$totalPrice = $order->totalPriceOrder();
 $data = [
     'id' => $_SESSION['user']['id'],
-    'total_price' => $totalPrice,
+    'total_price' => $_POST['totalPrice'],
+    'payment_done' => $_POST['paymentMethod'],
     'order' => $_SESSION['order']
 ];
 
-dd($data);
+// dd($_POST);
 // Informcao para a order ser feita
 // $data = [
 //     'id' => $_SESSION['user']['id'],
@@ -47,6 +47,6 @@ $order->create($data);
 
 view('/success', [
     'msg' => 'Your order is added successfully',
-    'msgBtn' => 'menu',
+    'msgBtn' => 'Home page',
     'color' => 'success'
 ]);

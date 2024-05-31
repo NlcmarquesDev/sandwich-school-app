@@ -41,6 +41,7 @@ $router->post('/beleg', '/dashboard/create')->only('auth');
 
 //order
 $router->get('/order', '/order/show')->only('auth');
+$router->get('/orders', '/order/allorders')->only('auth');
 $router->post('/order', '/order/create')->only('auth');
 //checkout
 $router->get('/checkout', '/dashboard/checkout')->only('auth');

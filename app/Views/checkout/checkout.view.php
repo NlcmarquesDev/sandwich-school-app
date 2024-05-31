@@ -45,39 +45,33 @@ $orders = $_SESSION['order'];
                         <strong>&euro;<?= $total ?></strong>
                     </li>
                 </ul>
-
-                <!-- <form class="card p-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Promo code">
-                        <button type="submit" class="btn btn-secondary">Redeem</button>
-                    </div>
-                </form> -->
             </div>
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Billing address</h4>
-                <form class="needs-validation" action="/broodjes_app/validation-order" method="POST" novalidate>
+                <form class="needs-validation" action="/broodjes_app/validation-order" method="POST">
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" id="firstName" placeholder="" value="<?= $_SESSION['user']['name'] ?>" disabled>
+                            <input type="text" class="form-control" id="firstName" placeholder="" value="<?= $_SESSION['user']['name'] ?>" disabled>
                         </div>
                         <div class="col-12">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="<?php echo $emailUser['email'] ?>" disabled>
+                            <input type="email" class="form-control" id="email" placeholder="<?php echo $emailUser['email'] ?>" disabled>
                         </div>
                         <hr class="my-4">
                         <h4 class="mb-3">Payment</h4>
                         <div class="my-3">
                             <div class="form-check">
-                                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                                <input id="credit" name="paymentMethod" value="payed" type="radio" class="form-check-input" checked required>
                                 <label class="form-check-label" for="credit">Payed</label>
                             </div>
                             <div class="form-check">
-                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                                <input id="debit" name="paymentMethod" value="later" type="radio" class="form-check-input" required>
                                 <label class="form-check-label" for="debit">Pay later</label>
                             </div>
                         </div>
                         <hr class="my-4">
+                        <input type="hidden" name="totalPrice" value="<?= $total ?>">
                         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
                 </form>
             </div>

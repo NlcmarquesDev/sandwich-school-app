@@ -26,17 +26,29 @@ class Orders
 
     public function create(array $data)
     {
-        $order = $this->db->query("INSERT INTO orders (user_id, total_price)  VALUES (:user_id, :total_price)", [':user_id' => $data['id'], ':total_price' => $data['total_price']]);
+        $order = $this->db->query("INSERT INTO orders (user_id, total_price, payment_done)  VALUES (:user_id, :total_price, :payment_done)", [':user_id' => $data['id'], ':total_price' => $data['total_price'], ':payment_done' => $data['payment_done']]);
 
         $lastId = $order->lastInsertId('orders');
 
-        for ($i = 0; $i < count($data['']); $i++) {
+        for ($i = 0; $i < count($data['order']); $i++) {
+            $breadPrice = $data['order'][$i]['brood']['price'];
+            $bread_id = $data['order'][$i]['brood']['id'];
+            $sandwish = $this->db->query('INSERT INTO sandwiches (order_id, bread_id, price) VALUES (:order_id, :bread_id, :price)', [':order_id' => $lastId, ':bread_id' => $bread_id, ':price' => $breadPrice]);
+
+            $lastIdSandwish = $order->lastInsertId('sandwiches');
+            // dd($lastIdSandwish);
+            // dd($data['order'][$i]['ingredients']);
+
+            for ($j = 0; $j < count($data['order'][$i]['ingredients']); $j++) {
+
+                $ingredients = $this->db->query('INSERT INTO sandwich_ingredients (sandwich_id, ingredient_id, price) VALUES (:sandwish_id, :ingredinet_id,:price)', [
+                    ':sandwish_id' => $lastIdSandwish,
+                    ':ingredinet_id' => $data['order'][$i]['ingredients'][$j]['id'],
+                    ':price' => $data['order'][$i]['ingredients'][$j]['price'],
+                ]);
+            }
         };
-
-        $sandwish = $this->db->query('INSERT INTO sandwiches (order_id, bread_id) VALUES (:order_id, :bread_id)', ['order_id' => $lastId, 'bread_id' => '']);
-
-
-        dd($lastId);
+        unset($_SESSION['order']);
     }
 
     public function getPriceBreadPerSandwish($sandwish)
@@ -57,21 +69,12 @@ class Orders
         return  $totalPriceIgredientPerSandwish;
     }
 
-
     public function totalPricePerSandwish($sandwish)
     {
         $getPriceBread = $this->getPriceBreadPerSandwish($sandwish);
         $totalPriceIgredientPerSandwish = $this->totalPriceIngredientsPerSandwish($sandwish);
         $totalPricePerSandwish = $getPriceBread + $totalPriceIgredientPerSandwish;
 
-
         return $totalPricePerSandwish;
-    }
-
-    public function totalPriceOrder()
-    {
-        $totalPrice = 10;
-
-        return $totalPrice;
     }
 }

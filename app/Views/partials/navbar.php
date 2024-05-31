@@ -10,6 +10,7 @@
                 <div class="d-flex justify-content-center align-items-center gap-4 ">
 
                     <p class="my-auto">Welcome, <span class="fw-bolder text-uppercase"><?= $_SESSION['user']['name'] ?></span></p>
+                    <a href="/broodjes_app/orders" type="button" class="btn btn-primary">Your orders</a>
                     <a href="/broodjes_app/logout" type="button" class="btn btn-primary">logout</a>
                 </div>
             <?php else : ?>
