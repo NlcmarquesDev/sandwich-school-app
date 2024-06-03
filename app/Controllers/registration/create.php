@@ -1,10 +1,12 @@
 <?php
 
 use App\Core\Mailer;
+use App\Models\User;
 use App\Core\Database;
 use App\Core\ValidateForm;
 
 $db = new Database();
+$user = new User();
 
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -18,9 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors['email'] = 'Please provide a valid email adress.';
         }
 
-        if (!empty($db->query('SELECT email FROM users WHERE email = :email', [
-            'email' => $_POST['email'],
-        ])->find())) {
+        if (!empty($user->getUserByEmail($_POST['email']))) {
             $errors['email'] = 'This email already exists.';
         };
     } else {
@@ -41,13 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     // chamar a base de dados
-    $db->query('INSERT INTO users (name,email, password, temp_pass, account_activation_hash) VALUES(:name, :email, :password, :temp_pass,:account_activation_hash)', [
-        'name' => htmlspecialchars($_POST['name']),
-        'email' => htmlspecialchars($_POST['email']),
-        'password' => $pass,
-        'temp_pass' => $newPass,
-        'account_activation_hash' => $activationToken
-    ]);
+    $user->createUser($_POST['name'], $_POST['email'], $pass, $newPass, $activationToken);
 
 
     $mail = new Mailer();

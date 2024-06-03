@@ -1,13 +1,12 @@
 <?php
 
-use App\Core\Database;
+use App\Models\User;
 
 $token = $_GET["token"];
 
+$users = new User();
 
-$checkToken = (new Database)->query('SELECT  * FROM users WHERE reset_token_hash = :reset_token_hash', [
-    'reset_token_hash' => $token
-])->find();
+$checkToken = $users->getResetTokenHash($token);
 
 if (empty($checkToken) || strtotime($checkToken['reset_token_expire_at']) <= time()) {
     return view('/success', [
@@ -17,9 +16,7 @@ if (empty($checkToken) || strtotime($checkToken['reset_token_expire_at']) <= tim
     ]);
 }
 
-$tokenUpdateToNull = (new Database)->query('UPDATE users SET reset_token_hash = null, reset_token_expire_at =null  WHERE id=:id', [
-    ':id' => $checkToken['id']
-]);
+$tokenUpdateToNull = $users->updateResetTokenHash($checkToken['id']);
 
 view('/success', [
     'msg' => 'New Password was restore successfully',

@@ -1,13 +1,13 @@
 <?php
 
-use App\Core\Database;
+use App\Models\Login;
+
+$login = new Login();
 
 $token = $_GET["token"];
 
 
-$checkToken = (new Database)->query('SELECT  * FROM users WHERE account_activation_hash = :account_activation_hash', [
-    'account_activation_hash' => $token
-])->find();
+$checkToken = $login->confirmToken($token);
 
 if (empty($checkToken)) {
     return view('/success', [
@@ -17,13 +17,10 @@ if (empty($checkToken)) {
     ]);
 }
 
-$tokenUpdateToNull = (new Database)->query('UPDATE users SET account_activation_hash = null WHERE id=:id', [
-    ':id' => $checkToken['id']
-]);
+$tokenUpdateToNull = $login->tokenUpdateToNull($checkToken['id']);
 
 view('/success', [
     'msg' => 'Your account is now activated',
     'msgBtn' => 'Login',
     'color' => 'success'
 ]);
-// 1716892750

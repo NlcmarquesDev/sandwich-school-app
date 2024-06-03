@@ -11,7 +11,7 @@ include(BASE_PATH . 'app/Views/partials/navbar.php');
         <thead>
             <tr>
                 <th scope="col">Order Number</th>
-                <th scope="col">Date</th>
+                <th scope="col">Date & Hours</th>
                 <th scope="col">Bread</th>
                 <th scope="col">Ingredients</th>
                 <th scope="col">Payed</th>

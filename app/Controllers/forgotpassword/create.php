@@ -1,10 +1,10 @@
 <?php
 
 use App\Core\Mailer;
-use App\Core\Database;
+use App\Models\User;
 use App\Core\ValidateForm;
 
-$db = new Database();
+$users = new User();
 
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -13,9 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!ValidateForm::email($_POST['email'])) {
             $errors['email'] = 'Please provide a valid email adress.';
         }
-        if (empty($db->query('SELECT email FROM users WHERE email = :email', [
-            'email' => $_POST['email'],
-        ])->find())) {
+        if (empty($users->getUserByEmail($_POST['email']))) {
             $errors['email'] = 'This email doesn\'t exists.';
         };
     } else {
@@ -37,17 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $activationToken = generateToken();
 
 
-    // chamar a base de dados
-    $db->query('UPDATE users SET password = :password, temp_pass =:temp_pass, reset_token_hash=:reset_token_hash, reset_token_expire_at= :reset_token_expire_at  , account_activation_hash = :account_activation_hash WHERE email=:email', [
-        'email' => htmlspecialchars($_POST['email']),
-        'password' => $pass,
-        'temp_pass' => $newPass,
-        'reset_token_hash' => $resetToken,
-        'reset_token_expire_at' => $expiry,
-        'account_activation_hash' => $activationToken
-    ]);
+    $users->updateUserForForgetPassword($_POST['email'], $pass, $newPass, $resetToken, $expiry, $activationToken);
 
-    //Criar o email de verificaçao
+
+    //Create Mail for verification
 
     $mail = new Mailer();
 

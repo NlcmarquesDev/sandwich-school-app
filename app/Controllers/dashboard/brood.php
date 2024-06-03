@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Bread;
 use App\Core\Database;
 
 
@@ -19,7 +20,9 @@ $_SESSION['breadcrumbs'] = [
 ];
 
 
-$breads = (new Database)->query('SELECT * FROM bread_types')->findAll();
+
+$breads = new Bread();
+$allBreads = $breads->getAll();
 
 if (isset($_GET['new'])) {
     $_SESSION['orderNumber']++;
@@ -28,5 +31,5 @@ if (isset($_GET['new'])) {
 
 
 view('/brood', [
-    'breads' => $breads
+    'breads' => $allBreads
 ]);

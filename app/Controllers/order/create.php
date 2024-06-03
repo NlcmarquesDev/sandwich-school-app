@@ -1,19 +1,18 @@
 <?php
 
-use App\Core\Database;
+use App\Models\Ingredient;
+
+$ingredients = new Ingredient();
 
 if (isset($_POST['ingredients'])) {
     $ingredientsData = [];
     for ($i = 0; $i < count($_POST['ingredients']); $i++) {
-        $ingredients = (new Database)->query("SELECT * FROM ingredients WHERE id = :id", [':id' => $_POST['ingredients'][$i]])->find();
-
-        // dd($ingredients);
-        array_push($ingredientsData, $ingredients);
+        $ingreds = $ingredients->getById($_POST['ingredients'][$i]);
+        array_push($ingredientsData, $ingreds);
     }
-    // dd($ingredientsData);
+
 
     $_SESSION['order'][$_SESSION['orderNumber']] = [...$_SESSION['order'][$_SESSION['orderNumber']], 'ingredients' => $ingredientsData];
 }
 
-// dd($_SESSION['order']);
 view('/checkout/order');

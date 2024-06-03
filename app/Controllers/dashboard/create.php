@@ -1,6 +1,7 @@
 <?php
 
-use App\Core\Database;
+use App\Models\Bread;
+use App\Models\Ingredient;
 
 $_SESSION['breadcrumbs'] = [
     'brood' => [
@@ -16,22 +17,21 @@ $_SESSION['breadcrumbs'] = [
         'class' => false
     ],
 ];
-if (empty($_SESSION['orderNumber'])) {
-    $_SESSION['orderNumber'] = 0;
-} else {
-    $_SESSION['orderNumber'] = $_SESSION['orderNumber'];
-}
+$breads = new Bread();
+$ingredient = new Ingredient();
+
+$_SESSION['orderNumber'] = $_SESSION['orderNumber'] ?? 0;
 // $_SESSION['orderNumber'] = $_SESSION['orderNumber'] ? $_SESSION['orderNumber'] : 0;
 
 
 if (isset($_POST['brood']) && $_POST['brood']) {
-    $bread = (new Database)->query('SELECT * FROM bread_types WHERE id=:id', [':id' => $_POST['brood']])->find();
+    $bread = $breads->getById($_POST['brood']);
     $_SESSION['order'][$_SESSION['orderNumber']] = [
         'brood' => $bread,
     ];
 }
 
-$ingredients = (new Database)->query('SELECT * FROM ingredients')->findAll();
+$ingredients = $ingredient->getAll();
 
 
 view('/beleg', ['ingredients' => $ingredients]);

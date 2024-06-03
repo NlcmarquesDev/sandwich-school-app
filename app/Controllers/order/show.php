@@ -1,14 +1,12 @@
 <?php
 
-use App\Core\Database;
+use App\Models\User;
 use App\Models\Orders;
 
-$db = new Database();
+$user = new User();
 $order = new Orders();
 
-$emailUser = $db->query('SELECT email FROM users WHERE id=:id', [
-    ':id' => $_SESSION['user']['id'],
-])->find();
+$emailUser = $user->getById($_SESSION['user']['id']);
 
 
 //criar o total valor dos ingredientes
@@ -39,7 +37,6 @@ for ($i = 0; $i < count($_SESSION['order']); $i++) {
 //pegar to total de cada sandwish e somar todos os index.
 
 $totalPriceOrder = array_sum($totalPriceSandwiahArray);
-
 
 
 
