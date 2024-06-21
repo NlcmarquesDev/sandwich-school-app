@@ -16,7 +16,15 @@ A new password is sent to their email and must be confirmed to become active.
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](/public/images/photo1.png);
+
+![App Screenshot](/public/images/photo2.png);
+
+![App Screenshot](/public/images/photo3.png);
+
+![App Screenshot](/public/images/photo4.png);
+
+![App Screenshot](/public/images/photo5.png);
 
 #### Features
 
@@ -49,12 +57,12 @@ composer install
 ```
 
 ##### Set Up the Database
+
 The database file is on the project repository
 
 ##### Configure the Application
 
 Update the database configuration in your PHP files to connect to your MySQL database.
-
 
 Start the Web Server
 
@@ -64,14 +72,13 @@ Registration
 
 ## Technologies Used
 
- - **PHP:** Backend logic and server-side processing.
- - **MySQL:** Database management system for storing user and order data.
- - **HTML/CSS:** Frontend layout and styling.
- - **JavaScript:** Frontend interactivity and validation.
- - **Model-View-Controller (MVC):** Architecture for organizing codebase efficiently.
- - **Routing:** Custom route creation for seamless navigation within the platform.
- - **Email Integration:** Sending confirmation emails for registration and password reset.
-
+- **PHP:** Backend logic and server-side processing.
+- **MySQL:** Database management system for storing user and order data.
+- **HTML/CSS:** Frontend layout and styling.
+- **JavaScript:** Frontend interactivity and validation.
+- **Model-View-Controller (MVC):** Architecture for organizing codebase efficiently.
+- **Routing:** Custom route creation for seamless navigation within the platform.
+- **Email Integration:** Sending confirmation emails for registration and password reset.
 
 ## Autores
 
